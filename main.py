@@ -94,7 +94,7 @@ def create_videofile(clip_lst, used_videos):
     now = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
     filename= random_video_{now}.mp4
     final_video.resize(width=480).write_videofile(f"{base_path}/{filename}")
-    return(f"{base_path}/{filename}"))
+    return(final_video)
 
 def get_sound(clips):
     if(sound == "m"):
