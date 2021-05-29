@@ -92,7 +92,9 @@ def create_videofile(clip_lst, used_videos):
     final_video = clips_array([[clips[0], clips[1]], [clips[2], clips[3]]])
     final_video.audio = audio
     now = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
-    final_video.resize(width=480).write_videofile(f"{base_path}/random_video_{now}.mp4")
+    filename= random_video_{now}.mp4
+    final_video.resize(width=480).write_videofile(f"{base_path}/{filename}")
+    return(f"{base_path}/{filename}"))
 
 def get_sound(clips):
     if(sound == "m"):
