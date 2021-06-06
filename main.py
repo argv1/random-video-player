@@ -7,6 +7,7 @@ from configparser import ConfigParser
 from datetime import datetime
 import hashlib
 from moviepy.editor import * 
+import os.path
 from pathlib import Path
 import pygame
 import random
@@ -55,8 +56,9 @@ def get_clips():
             break
 
     # reuse = False and clip already used
-    with open(reuse_logfile,"r") as logfile:
-        used_videos = logfile.read().splitlines()
+    if os.path.isfile(reuse_logfile):
+        with open(reuse_logfile,"r") as logfile:
+            used_videos = logfile.read().splitlines()
     if(reuse == False):
         video_lst = clip_lst[:]
         for clip in video_lst:
