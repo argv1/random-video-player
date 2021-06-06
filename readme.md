@@ -14,7 +14,7 @@ ensure that update the config.ini with our video and sound sources, length of th
 
 now you can run the script:
 ```bash
-i.e. main.py
+main.py
 ```
 
 ## License
