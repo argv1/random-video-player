@@ -10,7 +10,7 @@ run pip to ensure all requirements are fulfilled
 ```bash
 pip3 install -r requirements.txt
 ```
-ensure that update the config.ini with our video and sound sources, length of the video, etc.
+ensure to update the config.ini with our video and sound sources, length of the video preferences, etc.
 
 now you can run the script:
 ```bash
