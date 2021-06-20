@@ -26,5 +26,6 @@ For more details, please take a look at the [LICENSE file](https://github.com/ar
 - [x] Different video and sound settings
 
 Feel free to adjust the code, things that could be done are:
+- [ ] Concate audio clips for longer videos
 - [ ] Different amount of videos at the same time (i.e. 3 or 5 instead of always 4)
 - [ ] Improved randomisation
