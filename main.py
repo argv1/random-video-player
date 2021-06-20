@@ -48,7 +48,7 @@ def get_clips():
     file_lst, clip_lst, used_videos = [], [], []
     [file_lst.extend(list(Path(video_folder).rglob(f"*.{extension}")) if(recursive == True) else list(Path(video_folder).glob(f"*.{extension}"))) for extension in formats]
 
-    # remove to short videos
+    # add clips to list
     for file in file_lst:
         if(VideoFileClip(str(file)).duration >= min_length):
             clip_lst.append([file, VideoFileClip(str(file)).duration, hashfile(file)])
@@ -64,22 +64,33 @@ def get_clips():
         for clip in video_lst:
             if(clip[2] in used_videos):
                 clip_lst.remove(clip)
-
     return(clip_lst, used_videos)
 
 def create_videofile(clip_lst, used_videos):
     # create four randomized playlist based on the previous found video files
     clips = []
     for n in range(0,4):
-        duration, clip_order = 0, []
+        total_duration, clip_order = 0, []
         while(True):
             random_clip = random.choice(clip_lst)
-            clip_order.append(VideoFileClip(str(random_clip[0])))
-            duration += random_clip[1]
+            random_clip_duration = random_clip[1]
+            # use random parts for clips longer than prefered
+            if(random_clip_duration > max_length):
+                random_start = random.uniform(0, random_clip_duration-min_length)
+                random_stop = random.uniform(random_start+min_length, random_start+max_length)
+                if(random_stop > random_clip_duration):
+                    random_stop = random_start+min_length
+                fullclip = VideoFileClip(str(random_clip[0]))
+                clip_order.append(fullclip.subclip(random_start,random_stop))
+                total_duration += (random_stop-random_start)
+            else:
+                clip_order.append(VideoFileClip(str(random_clip[0])))
+                total_duration += random_clip_duration
             used_videos.append(random_clip[2])
-            if(duration >= total_length):
+            if(total_duration >= total_length):
                 # concatenate
                 clips.append(concatenate_videoclips(clip_order))
+                total_duration = 0
                 break
 
     # add new files to logfile
