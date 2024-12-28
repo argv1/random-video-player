@@ -12,25 +12,6 @@ from pathlib import Path
 import pygame
 import random
 
-# Global settings
-base_path = Path(__file__).parent.absolute()
-config_file = ConfigParser()
-config_file.read(base_path / 'config.ini')
-video_folder    = config_file['SETTINGS']['video_folder']
-recursive       = bool(config_file['SETTINGS']['recursive'])
-formats         = config_file['SETTINGS']['formats'].split(",")
-max_sources     = int(config_file['SETTINGS']['max_sources'])
-reuse           = bool(config_file['SETTINGS']['reuse'])
-reuse_logfile   = config_file['SETTINGS']['reuse_logfile']
-total_length    = float(config_file['SETTINGS']['total_length'])
-min_length      = float(config_file['SETTINGS']['min_length'])
-max_length      = float(config_file['SETTINGS']['max_length'])
-resolution      = int(config_file['SETTINGS']['resolution'])
-fullscreen      = bool(config_file['SETTINGS']['fullscreen'])
-sound           = config_file['SETTINGS']['sound']
-sound_folder    = config_file['SETTINGS']['sound_folder']
-sound_recursive = bool(config_file['SETTINGS']['sound_recursive'])
-
 def hashfile(file):
     # by https://www.geeksforgeeks.org/compare-two-files-using-hashing-in-python/
     BUF_SIZE = 65536 
@@ -135,4 +116,24 @@ def main():
     play_clip(final_clip)
         
 if __name__  == "__main__":
+
+    # Global settings
+    base_path = Path(__file__).parent.absolute()
+    config_file = ConfigParser()
+    config_file.read(base_path / 'config.ini')
+    video_folder    = config_file['SETTINGS']['video_folder']
+    recursive       = bool(config_file['SETTINGS']['recursive'])
+    formats         = config_file['SETTINGS']['formats'].split(",")
+    max_sources     = int(config_file['SETTINGS']['max_sources'])
+    reuse           = bool(config_file['SETTINGS']['reuse'])
+    reuse_logfile   = config_file['SETTINGS']['reuse_logfile']
+    total_length    = float(config_file['SETTINGS']['total_length'])
+    min_length      = float(config_file['SETTINGS']['min_length'])
+    max_length      = float(config_file['SETTINGS']['max_length'])
+    resolution      = int(config_file['SETTINGS']['resolution'])
+    fullscreen      = bool(config_file['SETTINGS']['fullscreen'])
+    sound           = config_file['SETTINGS']['sound']
+    sound_folder    = config_file['SETTINGS']['sound_folder']
+    sound_recursive = bool(config_file['SETTINGS']['sound_recursive'])
+
     main()
